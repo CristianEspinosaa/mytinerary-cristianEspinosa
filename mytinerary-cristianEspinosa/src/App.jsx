@@ -1,18 +1,28 @@
-import Hero from './Components/Hero'
-import NavBar from './Components/NavBar'
-import Carrusel from './Components/Carrusel'
-import CallToAction from './Components/CallToAction'
+import { useRoutes, BrowserRouter } from 'react-router-dom'
+import Home from './Pages/Home.jsx'
+import Cities from './Pages/Cities.jsx'
 import './App.css'
 
-function App() {
+const AppRoutes = () =>{
+  let routes = useRoutes([
+    {
+      path : '/',
+      element: <Home/>
+    },
+    {
+      path: '/cities',
+      element: <Cities/>
+    }
+  ])
+  return routes
+} 
 
+
+const App = () => {
   return (
-    <>
-    <NavBar></NavBar>
-    <Hero></Hero>
-    <CallToAction></CallToAction>
-    <Carrusel></Carrusel>
-    </>
+    <BrowserRouter>
+      <AppRoutes/>
+    </BrowserRouter>
   )
 }
 
