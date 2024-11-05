@@ -6,7 +6,7 @@ const Cities = () => {
   return (
     <>
       <Navbar/>
-      <MainCities/>
+        <MainCities/>
       <Footer/>
     </>
   )

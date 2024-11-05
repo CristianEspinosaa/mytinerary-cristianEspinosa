@@ -1,11 +1,13 @@
+// src/components/Cities.js
 import React, { useState, useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
 import fetchCities from '../data/cities.jsx';
 import CitiesSearch from "./SearchCities.jsx";
 
 function Cities() {
   const [cities, setCities] = useState([]);
-  
-  const [search, setSearch] = useState(""); 
+  const [search, setSearch] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getCities = async () => {
@@ -17,7 +19,11 @@ function Cities() {
   }, [search]);
 
   const handleSearch = (term) => {
-    setSearch(term); 
+    setSearch(term);
+  };
+
+  const viewMore = (city) => {
+    navigate("/itineraries", { state: { city } });
   };
 
   return (
@@ -38,7 +44,12 @@ function Cities() {
               <div className="p-4">
                 <h2 className="text-xl font-semibold text-white">{city.name}</h2>
                 <p className="text-gray-400">{city.country}</p>
-                <button className="mt-4 w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition-colors">View More</button>
+                <button 
+                  onClick={() => viewMore(city)} 
+                  className="mt-4 w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition-colors"
+                >
+                  View More
+                </button>
               </div>
             </div>
           ))}
