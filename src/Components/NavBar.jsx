@@ -26,9 +26,10 @@ const Navbar = () => {
     <Link to="/cities">
       <button className="text-white hover:text-gray-400 block px-4 py-2 md:p-0 text-center">Cities</button>
     </Link>
-    <button className="bg-cyan-700 text-white px-4 py-2 rounded hover:bg-blue-600 w-full md:w-92 text-center">
-      Login
-    </button>
+    <Link to="/signin">
+      <button className="bg-cyan-700 text-white px-4 py-2 rounded hover:bg-blue-600 w-full md:w-92 text-center" >Login</button>
+    </Link>
+    
   </div>
 </nav>
 
