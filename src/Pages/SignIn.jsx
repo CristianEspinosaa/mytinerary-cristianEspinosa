@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaGoogle } from "react-icons/fa";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { login } from "../store/actions/authActions.js";
 import Navbar from "../Components/NavBar.jsx";
 
@@ -12,14 +12,15 @@ const SignIn = () => {
   const [password, setPassword] = useState("")
 
   const dispach = useDispatch()
+  const authStore = useSelector(state => state.authStore)
 
   const handleSubmit = (e) => {
     e.preventDefault()
     dispach(login({email, password}))
   }
 
-  const loading = false
-  const error = null
+  const loading = authStore.loading
+  const error = authStore.error
 
 
   return (
@@ -92,6 +93,8 @@ const SignIn = () => {
             Sign Up
           </button>
         </Link>
+        {loading && <p className="text-center text-blue-700"> Loadin...</p>}
+        {error && <p className="text-center text-red-700"> 🚧 Credentials error 🚧 </p>}
       </div>
     </div>
     </>
